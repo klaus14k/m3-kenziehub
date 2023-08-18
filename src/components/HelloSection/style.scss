@@ -1,0 +1,12 @@
+section {
+    padding: 40px 20%;
+    display: flex;
+    justify-content: space-between;
+    gap: 200px;
+    border-top: 1px solid var(--grey-2);
+    border-bottom: 1px solid var(--grey-2);
+     
+    .headline {
+        color: var(--grey-1);
+    }
+}

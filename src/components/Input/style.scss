@@ -1,0 +1,27 @@
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    input {
+        color: var(--grey-0);
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        border-radius: 4px;
+        border: 1px solid var(--grey-2);
+        background: var(--grey-2);
+        width: 329.929px;
+        height: 48px;
+        padding: 0px 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .error {
+        color: var(--negative);
+    }
+}

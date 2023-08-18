@@ -1,0 +1,9 @@
+@media screen and (max-width: 550px){
+    section {
+        gap: 20px !important;
+        flex-direction: column !important;
+    }
+    header {
+        gap: 0 !important;
+    }
+}
