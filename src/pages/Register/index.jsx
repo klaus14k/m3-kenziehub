@@ -3,13 +3,13 @@ import { Input } from "../../components/Input/index"
 import { Select } from "../../components/Select"
 import { registerFormSchema } from "../../components/Input/registerFormSchema"
 import Logo from "../../assets/Logo.svg"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { api } from "../../data/api.js"
-import { ToastContainer, toast } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.min.css"
+import { UserContext } from "../../providers/UserContext"
 
 export const Register = () => {
     const [loading, setLoading] = useState(false)
@@ -24,23 +24,10 @@ export const Register = () => {
         navigate("/")
     }
 
-    const userRegister = async (formData) => {
-        try {
-            setLoading(true)
-            const {data} = await api.post("/users", formData)
-            toast.success("Sua conta foi criada com sucesso! Você será redirecionado para a tela de login em alguns instantes.")
-            setTimeout(() => navigate("/"), 5000)
-        } catch (error) {
-            toast.error("Ops, algo deu errado! Este email já pode ter sido cadastrado") 
-            throw new Error(error) 
-        }
-        finally {
-            setLoading(false)
-        }
-    }
+    const { userRegister } = useContext(UserContext)
 
     const submit = (formData) => {
-        userRegister(formData)
+        userRegister(formData, setLoading)
         reset()
     }
     

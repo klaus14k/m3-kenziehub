@@ -2,15 +2,15 @@ import "../../styles/formsMobile.scss"
 import { Input } from "../../components/Input/index"
 import { loginFormSchema } from "../../components/Input/loginFormSchema"
 import Logo from "../../assets/Logo.svg"
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { api } from "../../data/api.js"
-import { ToastContainer, toast } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.min.css"
+import { useContext, useState } from "react"
+import { UserContext } from "../../providers/UserContext"
 
-export const Login = ({ setUser }) => {
+export const Login = () => {
     const navigate = useNavigate()
 
     const goToRegister = (e) => {
@@ -19,29 +19,15 @@ export const Login = ({ setUser }) => {
     }
 
     const [loading, setLoading] = useState(false)
-
+    
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: zodResolver(loginFormSchema)
     })
-
-    const userLogin = async (formData) => {
-        try {
-            setLoading(true)
-            const {data} = await api.post("/sessions", formData)
-            localStorage.setItem("@TOKEN", data.token)
-            setUser(data.user)
-            navigate("/dashboard")
-        } catch (error) {
-            toast.error("Email ou senha podem estar incorretos")
-            throw new Error(error)
-        }
-        finally {
-            setLoading(false)
-        }
-    }
+    
+    const { userLogin } = useContext(UserContext)
 
     const submit = (formData) => {
-        userLogin(formData)
+        userLogin(formData, setLoading)
         reset()
     }
 
