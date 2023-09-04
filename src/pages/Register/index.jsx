@@ -1,15 +1,15 @@
 import "../../styles/formsMobile.scss"
+import Logo from "../../assets/Logo.svg"
 import { Input } from "../../components/Input/index"
 import { Select } from "../../components/Select"
 import { registerFormSchema } from "../../components/Input/registerFormSchema"
-import Logo from "../../assets/Logo.svg"
 import { useContext, useState } from "react"
+import { UserContext } from "../../providers/UserContext"
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.min.css"
-import { UserContext } from "../../providers/UserContext"
 
 export const Register = () => {
     const [loading, setLoading] = useState(false)
@@ -30,10 +30,10 @@ export const Register = () => {
         userRegister(formData, setLoading)
         reset()
     }
-    
+
     return (
         <div className="formContainer">
-            <ToastContainer autoClose={4000}/>
+            <ToastContainer autoClose={4000} />
             <div className="header">
                 <img src={Logo} alt="KenzieHub Logo" />
                 <button className="backButton" onClick={goBack}>Voltar</button>

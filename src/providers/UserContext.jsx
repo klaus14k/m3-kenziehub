@@ -5,7 +5,7 @@ import { api } from "../data/api"
 
 export const UserContext = createContext({})
 
-export const UserProvider = ({children}) => {
+export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
@@ -13,7 +13,7 @@ export const UserProvider = ({children}) => {
             const token = localStorage.getItem("@TOKEN")
             const userId = localStorage.getItem("@USERID")
 
-            if (token && userId){
+            if (token && userId) {
                 try {
                     const { data } = await api.get(`/profile`, {
                         headers: {
@@ -43,7 +43,7 @@ export const UserProvider = ({children}) => {
     const userLogin = async (formData, setLoading) => {
         try {
             setLoading(true)
-            const {data} = await api.post("/sessions", formData)
+            const { data } = await api.post("/sessions", formData)
             localStorage.setItem("@TOKEN", data.token)
             localStorage.setItem("@USERID", data.user.id)
             setUser(data.user)
@@ -60,12 +60,12 @@ export const UserProvider = ({children}) => {
     const userRegister = async (formData, setLoading) => {
         try {
             setLoading(true)
-            const {data} = await api.post("/users", formData)
+            const { data } = await api.post("/users", formData)
             toast.success("Sua conta foi criada com sucesso! Você será redirecionado para a tela de login em alguns instantes.")
             setTimeout(() => navigate("/"), 5000)
         } catch (error) {
-            toast.error("Ops, algo deu errado! Este email já pode ter sido cadastrado") 
-            throw new Error(error) 
+            toast.error("Ops, algo deu errado! Este email já pode ter sido cadastrado")
+            throw new Error(error)
         }
         finally {
             setLoading(false)

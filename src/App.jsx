@@ -1,9 +1,7 @@
 import { RoutesMain } from "./routes/index"
 
-function App() {
+export const App = () => {
   return (
     <RoutesMain />
   )
 }
-
-export default App

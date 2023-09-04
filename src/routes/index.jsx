@@ -3,8 +3,9 @@ import { Login } from "../pages/Login"
 import { Register } from "../pages/Register"
 import { Dashboard } from "../pages/Dashboard"
 import { ErrorPage } from "../pages/ErrorPage"
-import "../styles/index.scss"
 import { ProtectedRoutes } from "../components/ProtectedRoutes"
+import { TechProvider } from "../providers/TechContext"
+import "../styles/index.scss"
 
 export const RoutesMain = () => {
 
@@ -14,11 +15,11 @@ export const RoutesMain = () => {
             <Route path="/" element={<Login />} />
 
             <Route path="/register" element={<Register />} />
-            
+
             <Route path="/dashboard" element={<ProtectedRoutes />}>
-                <Route index element={<Dashboard />} />
+                <Route index element={<TechProvider><Dashboard /></TechProvider>} />
             </Route>
-            
+
             <Route path="*" element={<ErrorPage />} />
         </Routes>
     )

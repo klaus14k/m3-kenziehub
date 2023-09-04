@@ -1,18 +1,24 @@
+import { useState } from "react"
 import { Header } from "../../components/Header"
 import { HelloSection } from "../../components/HelloSection"
+import { TechList } from "../../components/TechList"
+import { CreateTechModal } from "../../components/CreateTechModal"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.min.css"
 import "../../styles/dashMobile.scss"
 
 
 export const Dashboard = () => {
 
+    const [createModal, setCreateModal] = useState(false)
+
     return (
         <div className="dashContainer">
+            <ToastContainer autoClose={3000} />
             <Header />
             <HelloSection />
-            <div>
-                <h1 className="title1">Que pena! Estamos em desenvolvimento :/</h1>
-                <p className="headline">Nossa aplicação ainda está em desenvolvimento, em breve teremos novidades</p>
-            </div>
+            <TechList setCreateModal={setCreateModal} />
+            {createModal ? <CreateTechModal setCreateModal={setCreateModal} /> : null}
         </div>
     )
 }

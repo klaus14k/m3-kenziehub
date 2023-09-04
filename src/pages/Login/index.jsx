@@ -19,11 +19,11 @@ export const Login = () => {
     }
 
     const [loading, setLoading] = useState(false)
-    
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: zodResolver(loginFormSchema)
     })
-    
+
     const { userLogin } = useContext(UserContext)
 
     const submit = (formData) => {
@@ -33,14 +33,14 @@ export const Login = () => {
 
     return (
         <div className="formContainer">
-            <ToastContainer autoClose={3000}/>
+            <ToastContainer autoClose={3000} />
             <header>
                 <img src={Logo} alt="KenzieHub Logo" />
             </header>
             <form className="form" onSubmit={handleSubmit(submit)}>
                 <h1 className="title1">Login</h1>
-                <Input {...register("email")} error={errors.email} id="email__input" label="Email" type="email" placeholder="Digite aqui seu email" disabled={loading}/>
-                <Input {...register("password")} error={errors.password} id="password__input" label="Senha" type="password" placeholder="Digite aqui sua senha" disabled={loading}/>
+                <Input {...register("email")} error={errors.email} id="email__input" label="Email" type="email" placeholder="Digite aqui seu email" disabled={loading} />
+                <Input {...register("password")} error={errors.password} id="password__input" label="Senha" type="password" placeholder="Digite aqui sua senha" disabled={loading} />
                 <button className="button pink" type="submit" disabled={loading}>{loading ? "Entrando" : "Entrar"}</button>
                 <p>Ainda não possui uma conta?</p>
                 <button className="button grey" onClick={goToRegister}>Cadastre-se</button>

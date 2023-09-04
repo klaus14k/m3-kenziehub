@@ -1,0 +1,42 @@
+.techListItem {
+    background-color: var(--grey-4);
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 35px;
+
+    > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+
+        .headline {
+            font-size: 14px;
+        }
+    }
+}
+.cardTitle {
+    color: #FFF;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px 
+}
+.buttonsStyle:hover {
+    animation: buttonHover 0.6s infinite;
+}
+
+@keyframes buttonHover {
+    0% {
+        scale: 1;
+    }
+    50% {
+        scale: 1.5;
+    }
+    100% {
+        scale: 1;
+    }
+}

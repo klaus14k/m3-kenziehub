@@ -1,0 +1,42 @@
+.modalController {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: rgba(20, 20, 20, 0.6);
+}
+.modalContainer {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+.modalHeader {
+    padding: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--grey-2);
+    border-radius: 8px 8px 0 0;
+}
+.modalBody {
+    padding: 22px;
+    background-color: var(--grey-3);
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+#createButton {
+    width: 329.929px;
+    height: 48px;
+    color: var(--grey-0);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 26px;
+}
