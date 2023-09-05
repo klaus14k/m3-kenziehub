@@ -7,6 +7,7 @@ export const UserContext = createContext({})
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [techList, setTechList] = useState([])
 
     useEffect(() => {
         const loadUser = async () => {
@@ -21,10 +22,11 @@ export const UserProvider = ({ children }) => {
                         }
                     })
                     setUser(data)
+                    setTechList(data.techs)
                 } catch (error) {
-                    console.log(error)
                     localStorage.removeItem("@TOKEN")
                     localStorage.removeItem("@USERID")
+                    throw new Error(error)
                 }
             }
         }
@@ -47,7 +49,9 @@ export const UserProvider = ({ children }) => {
             localStorage.setItem("@TOKEN", data.token)
             localStorage.setItem("@USERID", data.user.id)
             setUser(data.user)
+            setTechList(data.techs)
             navigate("/dashboard")
+            window.location.reload()
         } catch (error) {
             toast.error("Email ou senha podem estar incorretos")
             throw new Error(error)
@@ -74,7 +78,7 @@ export const UserProvider = ({ children }) => {
 
 
     return (
-        <UserContext.Provider value={{ user, setUser, userLogout, userLogin, userRegister }}>
+        <UserContext.Provider value={{ user, setUser, techList, setTechList, userRegister, userLogin, userLogout }}>
             {children}
         </UserContext.Provider>
     )

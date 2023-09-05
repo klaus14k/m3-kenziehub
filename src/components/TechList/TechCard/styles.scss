@@ -6,6 +6,14 @@
     align-items: center;
     padding: 25px 35px;
 
+    @media (max-width: 632px) {
+        padding: 15px 10px;
+    }
+    @media (max-width: 550px) {
+        flex-direction: column;
+        align-items: unset;
+    }
+
     > div {
         display: flex;
         align-items: center;
@@ -14,6 +22,10 @@
 
         .headline {
             font-size: 14px;
+
+            @media (max-width: 350px) {
+                font-size: 10px;
+            }
         }
     }
 }
@@ -23,7 +35,19 @@
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
-    line-height: 22px 
+    line-height: 22px;
+
+    @media (max-width: 550px) {
+        font-size: 14px;
+    }
+}
+#buttonsDiv {
+    display: flex;
+    gap: 10px;
+
+    @media (max-width: 350px) {
+        scale: 0.85;
+    }
 }
 .buttonsStyle:hover {
     animation: buttonHover 0.6s infinite;

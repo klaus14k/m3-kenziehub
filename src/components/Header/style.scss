@@ -2,4 +2,16 @@
     padding: 40px 20%;
     display: flex;
     justify-content: space-between;
+
+    > img {
+        @media (max-width: 350px) {
+            scale: 0.85;
+        }
+    }
+    > button {
+        @media (max-width: 350px) {
+            padding: 8px;
+            height: fit-content;
+        }
+    }
 }

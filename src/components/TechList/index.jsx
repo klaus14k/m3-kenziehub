@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { UserContext } from "../../providers/UserContext"
 import { TechContext } from "../../providers/TechContext"
 import { TechCard } from "./TechCard"
 import { MdAdd } from "react-icons/md"
@@ -6,9 +7,10 @@ import { EditTechModal } from "../EditTechModal"
 import "./styles.scss"
 
 export const TechList = ({ setCreateModal }) => {
-    const { techList, editModal } = useContext(TechContext)
+    const { editModal } = useContext(TechContext)
+    const { techList } = useContext(UserContext)
 
-    return (
+return (
         <>
             <section id="techSection">
                 <div id="listHeader">

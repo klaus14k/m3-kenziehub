@@ -11,6 +11,14 @@
         background-color: var(--grey-3);
         border-radius: 4px;
         padding: 25px 30px;
+
+        @media (max-width: 632px) {
+            padding: 20px;
+        }
+        @media (max-width: 550px) {
+            padding: 10px;
+            gap: 10px;
+        }
     }
 }
 #listHeader {
@@ -27,4 +35,3 @@
         opacity: 75%;
     }
 }
-

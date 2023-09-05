@@ -1,4 +1,5 @@
-import { createContext, useState } from "react"
+import { createContext, useContext, useState } from "react"
+import { UserContext } from "./UserContext"
 import { api } from "../data/api"
 import { toast } from "react-toastify"
 
@@ -7,7 +8,7 @@ export const TechContext = createContext({})
 export const TechProvider = ({ children }) => {
     const [editModal, setEditModal] = useState(false)
 
-    const [techList, setTechList] = useState([])
+    const { techList, setTechList } = useContext(UserContext)
 
     const techCreate = async (formData, setLoading) => {
         try {
@@ -23,7 +24,7 @@ export const TechProvider = ({ children }) => {
             setTechList([...techList, data])
             toast.success("Tecnologia criada com sucesso!")
         } catch (error) {
-            toast.error(`Algo deu errado`)
+            toast.error("Esse nome já está sendo utilizado")
         }
         finally {
             setLoading(false)
@@ -34,7 +35,7 @@ export const TechProvider = ({ children }) => {
         try {
             setLoading(true)
             const token = localStorage.getItem("@TOKEN")
-            const { data } = await api.patch(`users/techs/:${editModal.id}`, formData, {
+            const { data } = await api.put(`users/techs/${editModal.id}`, formData, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -59,7 +60,7 @@ export const TechProvider = ({ children }) => {
     const techDelete = async (deletingId) => {
         try {
             const token = localStorage.getItem("@TOKEN")
-            await api.delete(`users/tech/:${deletingId}`, {
+            await api.delete(`users/techs/${deletingId}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -73,7 +74,7 @@ export const TechProvider = ({ children }) => {
     }
 
     return (
-        <TechContext.Provider value={{ techList, techCreate, setEditModal, editModal, techEdit, techDelete }} >
+        <TechContext.Provider value={{ techCreate, techEdit, techDelete, editModal, setEditModal }} >
             {children}
         </TechContext.Provider>
     )
